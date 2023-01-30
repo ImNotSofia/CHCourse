@@ -11,6 +11,14 @@ public class ErraticEnemy : MonoBehaviour
 
     private EnemyLowLook enemyLowLook;
 
+    public float speedToSee;
+
+    public float speed;
+
+    [SerializeField] private float distanceMax = 2;
+
+    [SerializeField] private Transform mainCh;
+
     public StateOfEnemy states;
 
     // Start is called before the first frame update
@@ -52,14 +60,25 @@ public class ErraticEnemy : MonoBehaviour
     private void LookAt()
     {
 
-        enemyLowLook.LookCharacter();
+        Quaternion newRotation = Quaternion.LookRotation((mainCh.position - transform.position));
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, speedToSee * Time.deltaTime);
 
     }
 
     private void Chasing()
     {
 
-        enemyChaser.Persecute();
+        var toMain = mainCh.position - transform.position;
+
+        var distance = toMain.magnitude;
+
+        if (distance > distanceMax)
+        {
+
+            transform.position = Vector3.MoveTowards(transform.position, mainCh.position, Time.deltaTime * speed);
+
+        }
 
     }
 
