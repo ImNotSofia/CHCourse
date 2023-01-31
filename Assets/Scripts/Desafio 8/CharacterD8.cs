@@ -15,21 +15,23 @@ public class CharacterD8 : MonoBehaviour
     void Start()
     {
 
-        transform.position += direction * speed;
-
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        transform.position += direction * speed;
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             //Debug.Log("Working A");
 
-            Quaternion rotation = Quaternion.Euler(0, 15, 0);
+            transform.Rotate(0, -15, 0, Space.Self);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, speed * Time.deltaTime);
+            //Quaternion rotation = Quaternion.Euler(0, -15, 0);
+
+            //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime);
 
         }
 
@@ -37,9 +39,11 @@ public class CharacterD8 : MonoBehaviour
         {
             //Debug.Log("Working D");
 
-            Quaternion rotation = Quaternion.Euler(0, -15, 0);
+            transform.Rotate(0, 15, 0, Space.Self);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, speed * Time.deltaTime);
+            //Quaternion rotation = Quaternion.Euler(0, 15, 0);
+
+            //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime);
 
         }
 
