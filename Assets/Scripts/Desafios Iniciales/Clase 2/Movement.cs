@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Movement : MonoBehaviour
 {
+
+    public Vector3 movement;
 
     public float speed;
 
-    public Vector3 direction;
-
-    public float damage;
+    public Vector3 scaleChange;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        transform.localScale = scaleChange;
 
     }
 
@@ -21,9 +23,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
 
-        transform.position += direction * speed;
-
+        transform.position += movement * speed;
 
     }
-
 }
